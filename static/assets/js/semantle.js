@@ -69,15 +69,31 @@ function ensureUserId() {
     return getStoredUserId();
 }
 
+function updateUserIdPromptState() {
+    const panel = $('#user-id-panel');
+    const input = $('#user-id-input');
+    const guessInput = $('#guess');
+    const needsUserId = getStoredUserId() == null;
+    panel.classList.toggle('needs-attention', needsUserId);
+    input.classList.toggle('needs-attention', needsUserId);
+    if (needsUserId) {
+        input.focus();
+    } else {
+        guessInput.focus();
+    }
+}
+
 function setUserIdDisplay() {
     const userId = getStoredUserId();
     if (userId == null) {
         $('#user-id-display').textContent = '사용할 ID를 입력하고 저장하세요.';
         $('#user-id-input').value = '';
+        updateUserIdPromptState();
         return;
     }
     $('#user-id-input').value = userId.split('#')[0];
     $('#user-id-display').innerHTML = `현재 사용자 ID: <b>${userId}</b>`;
+    updateUserIdPromptState();
 }
 
 function normalizeSharedGuess(entry) {

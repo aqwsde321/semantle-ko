@@ -190,6 +190,39 @@ input[type="button"] {
   align-items: center;
 }
 
+#user-id-panel {
+  margin: 1em 0 1.2em;
+  padding: 1em;
+  border: 1px solid #c9d8e2;
+  border-radius: 0.75em;
+  background: #f6fbff;
+}
+
+#user-id-panel > div {
+  display: flex;
+  gap: 0.5em;
+  margin-top: 0.45em;
+}
+
+#user-id-panel input {
+  flex: 1;
+  padding: .5em;
+  border: 1px solid #666666;
+  border-radius: 0.2em;
+}
+
+#user-id-panel.needs-attention {
+  border-color: #11a4d3;
+  box-shadow: 0 0 0 4px rgba(17, 164, 211, 0.12);
+  animation: user-id-pulse 1.6s ease-in-out infinite;
+}
+
+#user-id-input.needs-attention {
+  border-color: #11a4d3;
+  box-shadow: 0 0 0 4px rgba(17, 164, 211, 0.16);
+  background: #ffffff;
+}
+
 #guess-wrapper input,
 #give-up-btn {
   padding: .5em;
@@ -258,6 +291,16 @@ button {
 .progress-container,
 .progress-bar {
   display: inline-block;
+}
+
+@keyframes user-id-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px rgba(17, 164, 211, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(17, 164, 211, 0.18);
+  }
 }
 
 .percentile {
