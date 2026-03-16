@@ -165,7 +165,7 @@ function renderStatus() {
 
     $('#response').classList.add('gaveup');
     $('#response').innerHTML = `<p><b>정답 단어가 공개되었습니다: "${solvedEntry.guess}"</b><br/>최초로 찾은 사용자: ${solvedEntry.firstUserId}<br/>정답 단어와 비슷한, <a href="/nearest1k/${puzzleNumber}">상위 1,000개의 단어</a>를 확인해보세요.</p>`;
-    $('#give-up-btn').style = 'display:none;';
+    // $('#give-up-btn').style = 'display:none;';
 }
 
 function updateGuesses(highlightedGuess = '') {
@@ -308,14 +308,14 @@ async function init() {
         syncSharedGuesses();
     }, 5000);
 
-    $('#give-up-btn').addEventListener('click', async function() {
-        if (!confirm('정답을 확인하시겠습니까?')) {
-            return;
-        }
-        const secret = await (await fetch('/giveup/' + puzzleNumber)).text();
-        $('#response').classList.add('gaveup');
-        $('#response').innerHTML = `<p><b>오늘의 정답 단어는 "${secret}" 입니다.</b><br/>정답 단어와 비슷한, <a href="/nearest1k/${puzzleNumber}">상위 1,000개의 단어</a>를 확인해보세요.</p>`;
-    });
+    // $('#give-up-btn').addEventListener('click', async function() {
+    //     if (!confirm('정답을 확인하시겠습니까?')) {
+    //         return;
+    //     }
+    //     const secret = await (await fetch('/giveup/' + puzzleNumber)).text();
+    //     $('#response').classList.add('gaveup');
+    //     $('#response').innerHTML = `<p><b>오늘의 정답 단어는 "${secret}" 입니다.</b><br/>정답 단어와 비슷한, <a href="/nearest1k/${puzzleNumber}">상위 1,000개의 단어</a>를 확인해보세요.</p>`;
+    // });
 
     $('#form').addEventListener('submit', async function(event) {
         event.preventDefault();
