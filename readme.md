@@ -4,29 +4,40 @@
 ([소스코드](https://github.com/gaetjen/semantle-de))를 포크하여,
 한국어로 플레이할 수 있도록 수정한 것입니다.
 
-### Setup
+## 빠른 시작
 
-Download Word2Vec and dictionary data:
+처음 한 번은 대용량 데이터 다운로드와 전처리가 필요합니다.
+최소 15GB 이상의 여유 디스크 공간이 필요합니다.
+
+Docker:
+
 ```bash
-cd data
-wget https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.ko.300.vec.gz
-gzip -d cc.ko.300.vec.gz
-wget https://github.com/spellcheck-ko/hunspell-dict-ko/releases/download/0.7.92/ko-aff-dic-0.7.92.zip
-unzip ko-aff-dic-0.7.92.zip
+git clone <repo-url>
+cd semantle-ko
+./scripts/setup-data.sh
+docker compose up
 ```
 
-Filter and save word2vec in DB
+로컬 Python:
+
 ```bash
-docker-compose run --rm --entrypoint python app filter_words.py
-docker-compose run --rm --entrypoint python app process_vecs.py
+git clone <repo-url>
+cd semantle-ko
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+./scripts/setup-data.sh --local
+gunicorn semantle:app --bind 0.0.0.0:8899
 ```
 
-(Optional) Regenerate secrets
-```bash
-docker-compose run --rm --entrypoint python app generate_secrets.py
-```
+서버가 올라오면 브라우저에서 `http://localhost:8899`로 접속할 수 있습니다.
 
-Start server
+## setup-data.sh
+
+필요한 경우:
+
 ```bash
-docker-compose up
+./scripts/setup-data.sh --docker
+./scripts/setup-data.sh --local
+./scripts/setup-data.sh --regenerate-secrets
 ```
