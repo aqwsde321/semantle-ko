@@ -1,8 +1,10 @@
-# 꼬맨틀 — 단어 유사도 추측 게임
+# 꼬맨틀 — 협동형 단어 유사도 추측 게임
 
 이 레포지터리는 Johannes Gätjen의 [Semantlich](http://semantlich.johannesgaetjen.de/)
 ([소스코드](https://github.com/gaetjen/semantle-de))를 포크하여,
 한국어로 플레이할 수 있도록 수정한 것입니다.
+원작의 개인 플레이 구조를 바탕으로, 같은 날의 추측 결과를 모두가 공유하는 협동형 멀티게임으로 확장했습니다.
+검색한 단어, 최초 검색자 ID, 사용자별 리더보드가 함께 표시됩니다.
 
 ## 빠른 시작
 
